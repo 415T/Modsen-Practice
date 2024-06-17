@@ -12,6 +12,18 @@ class ImageDuplicateFinder:
         self.hashes = []
         self.duplicates = {}
 
+    def load_images_from_directory(self, directory):
+
+    def calculate_hashes(self):
+
+    def find_duplicates(self):
+
+    def print_duplicates(self):
+
+    def visualize_duplicates(self):
+
+    def process_directory(self, directory):
+
 
 if __name__ == '__main__':
     finder = ImageDuplicateFinder()
