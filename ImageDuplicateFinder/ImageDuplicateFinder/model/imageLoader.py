@@ -1,4 +1,4 @@
-from imageFolder import ImageFolder
+from ImageDuplicateFinder.model.imageFolder import ImageFolder
 
 class ImageLoader:
     @staticmethod

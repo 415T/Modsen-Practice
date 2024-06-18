@@ -1,6 +1,6 @@
 from typing import List, Tuple, Dict
-from image import Image
-from imageFolder import ImageFolder
+from ImageDuplicateFinder.model.image import Image
+from ImageDuplicateFinder.model.imageFolder import ImageFolder
 
 class DuplicateFinder:
     @staticmethod

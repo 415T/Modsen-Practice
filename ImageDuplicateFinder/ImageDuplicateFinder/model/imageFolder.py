@@ -1,6 +1,6 @@
 from pathlib import Path
 from typing import List
-from image import Image
+from ImageDuplicateFinder.model.image import Image
 
 class ImageFolder:
     def __init__(self, directory: str, file_formats: List[str] = None):

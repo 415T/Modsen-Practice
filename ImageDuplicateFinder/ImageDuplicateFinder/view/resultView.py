@@ -1,6 +1,8 @@
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from typing import List, Tuple
-from ..model.image import Image
+from ImageDuplicateFinder.model.image import Image
 from PIL import Image as PILImage
 
 class ResultView:
