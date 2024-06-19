@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for
 import requests
 
 app = Flask(__name__)
@@ -32,11 +32,21 @@ def get_weather_by_coordinates():
     if not lat or not lon:
         return jsonify({'error': 'Missing required parameters: lat and lon'}), 400
 
+    return redirect(url_for('get_weather_by_lat_lon', lat=lat, lon=lon), code=307)
+
+@app.route('/weather/lat_lon', methods=['GET'])
+def get_weather_by_lat_lon():
+    lat = request.args.get('lat')
+    lon = request.args.get('lon')
+    if not lat or not lon:
+        return jsonify({'error': 'Missing required parameters: lat and lon'}), 400
+
     params = {
         'lat': lat,
         'lon': lon,
         'appid': API_KEY
     }
+
     return make_request(BASE_URL_WEATHER, params)
 
 @app.route('/weather/city/<city_name>', methods=['GET'])
