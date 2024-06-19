@@ -24,6 +24,15 @@ def test_get_weather_by_city_id(client):
 
 def test_get_weather_by_coordinates(client):
     response = client.get('/weather/coordinates?lat=35&lon=139')
+    assert response.status_code == 307
+    redirect_response = client.get(response.headers['Location'])
+    assert redirect_response.status_code == 200
+    data = redirect_response.get_json()
+    assert 'status_code' in data
+    assert 'data' in data
+
+def test_get_weather_by_lat_lon(client):
+    response = client.get('/weather/lat_lon?lat=35&lon=139')
     assert response.status_code == 200
     data = response.get_json()
     assert 'status_code' in data
