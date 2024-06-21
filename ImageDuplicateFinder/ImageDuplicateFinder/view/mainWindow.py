@@ -102,18 +102,29 @@ class MainWindow(QMainWindow):
             self.results_text.setText("No duplicates found.")
 
     def visualize_duplicates(self, duplicates):
-        fig, axes = plt.subplots(len(duplicates), 2, figsize=(10, 5 * len(duplicates)))
+        rows = len(duplicates)
+        cols = 2
 
-        if len(duplicates) == 1:
+        fig, axes = plt.subplots(rows, cols, figsize=(10, 5 * rows))
+
+        if rows == 1:
             axes = [axes]
 
         for i, (img1, img2) in enumerate(duplicates):
+            file1_name = img1.path.split('\\')[-1]
+            file2_name = img2.path.split('\\')[-1]
+            path1 = img1.path
+            path2 = img2.path
+
             axes[i][0].imshow(PILImage.open(img1.path))
             axes[i][0].axis('off')
+            axes[i][0].set_title(f"File: {file1_name}\nPath: {path1}", fontsize=8, pad=20)
 
             axes[i][1].imshow(PILImage.open(img2.path))
             axes[i][1].axis('off')
+            axes[i][1].set_title(f"File: {file2_name}\nPath: {path2}", fontsize=8, pad=20)
 
         plt.tight_layout()
         canvas = FigureCanvas(fig)
+        canvas.setMinimumHeight(5 * rows * 100)
         self.scroll_area.setWidget(canvas)
