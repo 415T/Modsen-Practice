@@ -102,7 +102,7 @@ class MainWindow(QMainWindow):
             self.results_text.setText("No duplicates found.")
 
     def visualize_duplicates(self, duplicates):
-        rows = min(duplicates, 100)
+        rows = min(len(duplicates), 100)
         cols = 2
 
         fig, axes = plt.subplots(rows, cols, figsize=(10, 5 * rows))

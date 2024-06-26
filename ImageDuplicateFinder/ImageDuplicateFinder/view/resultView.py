@@ -5,10 +5,14 @@ from ImageDuplicateFinder.model.image import Image
 
 class ResultView:
     @staticmethod
-    def display_and_visualize_duplicates(duplicates: List[Tuple[Image, Image]]):
+    def display_and_visualize_duplicates(duplicates: List[Tuple[Image, Image]], max_display: int = 100):
         if not duplicates:
             print("No duplicates found.")
             return
+
+        if len(duplicates) > max_display:
+            print(f"Displaying first {max_display} duplicates out of {len(duplicates)} found.")
+            duplicates = duplicates[:max_display]
 
         fig, axes = plt.subplots(len(duplicates), 2, figsize=(10, 5 * len(duplicates)))
 
