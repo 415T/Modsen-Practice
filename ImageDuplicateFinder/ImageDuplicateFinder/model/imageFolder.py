@@ -1,7 +1,9 @@
 from pathlib import Path
 from typing import List
 from ImageDuplicateFinder.model.image import Image
+from ImageDuplicateFinder.utils.log import return_logger
 
+logger = return_logger(__name__)
 class ImageFolder:
     def __init__(self, directory: str, file_formats: List[str] = None):
         self.directory = Path(directory)

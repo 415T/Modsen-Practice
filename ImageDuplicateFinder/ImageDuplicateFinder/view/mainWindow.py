@@ -11,6 +11,9 @@ import matplotlib.pyplot as plt
 from PIL import Image as PILImage
 from ImageDuplicateFinder.model.imageLoader import ImageLoader
 from ImageDuplicateFinder.model.duplicateFinder import DuplicateFinder
+from ImageDuplicateFinder.utils.log import return_logger
+
+logger = return_logger(__name__)
 
 class MainWindow(QMainWindow):
     def __init__(self):

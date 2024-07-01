@@ -2,10 +2,9 @@ from typing import List, Tuple, Dict
 from ImageDuplicateFinder.model.image import Image
 from ImageDuplicateFinder.model.imageFolder import ImageFolder
 from concurrent.futures import ThreadPoolExecutor
-import logging
+from ImageDuplicateFinder.utils.log import return_logger
 
-logging.basicConfig(level=logging.DEBUG)
-
+logger = return_logger(__name__)
 class DuplicateFinder:
     @staticmethod
     def find_duplicates(folder: ImageFolder) -> List[Tuple[Image, Image]]:
