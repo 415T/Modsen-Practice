@@ -5,6 +5,8 @@ from concurrent.futures import ThreadPoolExecutor
 from ImageDuplicateFinder.utils.log import return_logger
 
 logger = return_logger(__name__)
+
+
 class DuplicateFinder:
     @staticmethod
     def find_duplicates(folder: ImageFolder) -> List[Tuple[Image, Image]]:
@@ -21,7 +23,7 @@ class DuplicateFinder:
                     else:
                         hash_dict[img_hash] = img
                 except Exception as e:
-                    logging.error(f"Error processing image: {e}")
+                    logger.error(f"Error processing image: {e}")
         return duplicates
 
     @staticmethod
@@ -37,5 +39,5 @@ class DuplicateFinder:
                     if img_hash in hash_dict:
                         duplicates.append((img, hash_dict[img_hash]))
                 except Exception as e:
-                    logging.error(f"Error processing image: {e}")
+                    logger.error(f"Error processing image: {e}")
         return duplicates

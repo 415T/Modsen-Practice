@@ -22,5 +22,5 @@ class ImageFolder:
                     if image.hash:
                         images.append(image)
                 except Exception as e:
-                    print(f"Error loading image {file_path}: {e}")
+                    logger.error(f"Error loading image {file_path}: {e}")
         return images

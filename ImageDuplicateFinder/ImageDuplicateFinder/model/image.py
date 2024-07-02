@@ -15,5 +15,5 @@ class Image:
                 img = img.resize((256, 256)).convert('RGB')
                 return hashlib.md5(img.tobytes()).hexdigest()
         except Exception as e:
-            print(f"Error processing image {self.path}: {e}")
+            logger.error(f"Error processing image {self.path}: {e}")
             return ""

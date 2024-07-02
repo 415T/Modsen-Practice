@@ -1,6 +1,7 @@
+from typing import List, Tuple
 import torch
 import torch.nn as nn
-from torchvision import models, transforms
+from torchvision import models
 from torch.utils.data import DataLoader
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
@@ -32,8 +33,8 @@ def extract_features(dataloader: DataLoader, model: nn.Module, device: torch.dev
     return features, paths
 
 
-def find_duplicates_cnn(image_dir: str, batch_size: int = 32, num_workers: int = 4, threshold: float = 0.9) -> List[
-    Tuple[str, str]]:
+def find_duplicates_cnn(image_dir: str, batch_size: int = 32, num_workers: int = 4, threshold: float = 0.9) -> \
+        List[Tuple[str, str]]:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = models.resnet18(pretrained=True)
     model = FeatureExtractor(model).to(device)
