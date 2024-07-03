@@ -1,2 +1,4 @@
-/ImageDuplicateFinder/ImageDuplicateFinder/TestData/kitchen - Copy/
-/ImageDuplicateFinder/ImageDuplicateFinder/TestData/kitchen
+/ImageDuplicateFinder/venv/
+/ImageDuplicateFinder/.idea
+*.pyc
+*.cpython-310.pyc
