@@ -8,6 +8,7 @@ from ImageDuplicateFinder.utils.log import return_logger
 
 logger = return_logger(__name__)
 
+
 class CustomImageDataset(Dataset):
     def __init__(self, image_dir: str, transform=None):
         self.image_dir = image_dir
@@ -36,6 +37,7 @@ class CustomImageDataset(Dataset):
             logger.error(f"Error loading image {img_path}: {e}")
             return None, img_path
 
+
 def create_dataloader(image_dir: str, batch_size: int, num_workers: int = 0, transform=None) -> DataLoader:
     if transform is None:
         transform = transforms.Compose([
@@ -44,6 +46,7 @@ def create_dataloader(image_dir: str, batch_size: int, num_workers: int = 0, tra
         ])
     dataset = CustomImageDataset(image_dir, transform=transform)
     return DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+
 
 def filter_invalid_images(batch: List[Tuple[torch.Tensor, str]]) -> List[Tuple[torch.Tensor, str]]:
     valid_images = []

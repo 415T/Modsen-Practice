@@ -4,6 +4,7 @@ from ImageDuplicateFinder.utils.log import return_logger
 
 logger = return_logger(__name__)
 
+
 class Image:
     def __init__(self, path: str):
         self.path = path

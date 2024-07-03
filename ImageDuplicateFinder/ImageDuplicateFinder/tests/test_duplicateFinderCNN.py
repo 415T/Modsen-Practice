@@ -6,6 +6,7 @@ from ImageDuplicateFinder.model.duplicateFinderCNN import FeatureExtractor, extr
 import numpy as np
 from torchvision.models import ResNet18_Weights
 
+
 @pytest.fixture
 def mock_dataloader():
     images = torch.randn(4, 3, 256, 256)
