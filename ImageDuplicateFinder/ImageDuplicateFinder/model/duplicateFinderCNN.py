@@ -5,7 +5,8 @@ from torchvision import models
 from torch.utils.data import DataLoader
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-from ImageDuplicateFinder.utils.dataset import create_dataloader
+from ImageDuplicateFinder.utils.dataset import create_dataloader, filter_invalid_images
+from torchvision.models import ResNet18_Weights
 
 
 class FeatureExtractor(nn.Module):
@@ -24,8 +25,14 @@ def extract_features(dataloader: DataLoader, model: nn.Module, device: torch.dev
     features = []
     paths = []
     with torch.no_grad():
-        for images, batch_paths in dataloader:
-            images = images.to(device)
+        for batch in dataloader:
+            images, batch_paths = batch
+            filtered_batch = filter_invalid_images(list(zip(images, batch_paths)))
+            if not filtered_batch:
+                continue
+
+            images, batch_paths = zip(*filtered_batch)
+            images = torch.stack(images).to(device)
             outputs = model(images)
             features.append(outputs.cpu().numpy())
             paths.extend(batch_paths)
@@ -33,10 +40,11 @@ def extract_features(dataloader: DataLoader, model: nn.Module, device: torch.dev
     return features, paths
 
 
-def find_duplicates_cnn(image_dir: str, batch_size: int = 32, num_workers: int = 4, threshold: float = 0.9) -> \
+def find_duplicates_cnn(image_dir: str, batch_size: int = 32, num_workers: int = 0, threshold: float = 0.9) -> \
         List[Tuple[str, str]]:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = models.resnet18(pretrained=True)
+    weights = ResNet18_Weights.IMAGENET1K_V1
+    model = models.resnet18(weights=weights)
     model = FeatureExtractor(model).to(device)
 
     dataloader = create_dataloader(image_dir, batch_size, num_workers)

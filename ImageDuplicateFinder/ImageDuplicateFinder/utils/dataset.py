@@ -4,6 +4,9 @@ from PIL import Image
 from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader
 import torch
+from ImageDuplicateFinder.utils.log import return_logger
+
+logger = return_logger(__name__)
 
 class CustomImageDataset(Dataset):
     def __init__(self, image_dir: str, transform=None):
@@ -24,12 +27,16 @@ class CustomImageDataset(Dataset):
 
     def __getitem__(self, idx: int) -> Tuple[torch.Tensor, str]:
         img_path = self.image_paths[idx]
-        image = Image.open(img_path).convert("RGB")
-        if self.transform:
-            image = self.transform(image)
-        return image, img_path
+        try:
+            image = Image.open(img_path).convert("RGB")
+            if self.transform:
+                image = self.transform(image)
+            return image, img_path
+        except Exception as e:
+            logger.error(f"Error loading image {img_path}: {e}")
+            return None, img_path
 
-def create_dataloader(image_dir: str, batch_size: int, num_workers: int = 4, transform=None) -> DataLoader:
+def create_dataloader(image_dir: str, batch_size: int, num_workers: int = 0, transform=None) -> DataLoader:
     if transform is None:
         transform = transforms.Compose([
             transforms.Resize((256, 256)),
@@ -44,5 +51,5 @@ def filter_invalid_images(batch: List[Tuple[torch.Tensor, str]]) -> List[Tuple[t
         if image is not None:
             valid_images.append((image, path))
         else:
-            print(f"Invalid image: {path}")
+            logger.warning(f"Invalid image: {path}")
     return valid_images
