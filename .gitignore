@@ -2,3 +2,7 @@
 /ImageDuplicateFinder/.idea
 *.pyc
 *.cpython-310.pyc
+/ImageDuplicateFinder/ImageDuplicateFinder/model/__pycache__
+/ImageDuplicateFinder/ImageDuplicateFinder/view/__pycache__
+/ImageDuplicateFinder/ImageDuplicateFinder/tests/__pycache__
+/ImageDuplicateFinder/ImageDuplicateFinder/utils/__pycache__
