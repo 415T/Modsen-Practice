@@ -52,10 +52,23 @@ Ensure you have Python 3.8+ installed.
 ## Usage
 
 ### Running the GUI
-To start the GUI, run the following command:
+To start the GUI, you can use the provided scripts:
+
+For Unix-based systems:
+```bash
+./run.sh
+```
+
+For Windows:
+```bash
+run.bat
+```
+
+Alternatively, you can manually run the following command:
 ```bash
 python main.py
 ```
+
 This will open the Duplicate Image Finder application where you can select folders and find duplicate images using either hash-based or CNN-based methods.
 
 ### Finding Duplicates in a Folder
