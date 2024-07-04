@@ -4,20 +4,36 @@
 ImageDuplicateFinder is a Python-based tool designed to identify duplicate images within a directory or between two directories. It provides functionality to find duplicates based on hash comparison and Convolutional Neural Network (CNN) feature extraction.
 
 ## Table of Contents
+
 1. [Features](#features)
-2. [Installation](#installation)
-3. [Usage](#usage)
-   - [Running the GUI](#running-the-gui)
-   - [Finding Duplicates in a Folder](#finding-duplicates-in-a-folder)
-   - [Comparing Two Folders for Duplicates](#comparing-two-folders-for-duplicates)
-   - [Finding Duplicates Using CNN](#finding-duplicates-using-cnn)
-4. [Modules](#modules)
-5. [Tests](#tests)
+2. [Technologies](#technologies)
+3. [Installation](#installation)
+4. [Usage](#usage)
+    - [Running the GUI](#running-the-gui)
+    - [Finding Duplicates in a Folder](#finding-duplicates-in-a-folder)
+    - [Comparing Two Folders for Duplicates](#comparing-two-folders-for-duplicates)
+    - [Finding Duplicates Using CNN](#finding-duplicates-using-cnn)
+5. [Modules](#modules)
+6. [Tests](#tests)
+7. [Contributing](#contributing)
+8. [Sources](#sources)
+9. [Project Team](#project-team)
 
 ## Features
 - **Hash-based Duplicate Detection**: Quickly find duplicate images within a folder or between two folders using image hashes.
 - **CNN-based Duplicate Detection**: Use a pre-trained CNN to extract features from images and find duplicates based on cosine similarity.
 - **Graphical User Interface (GUI)**: A PyQt6-based GUI for easy interaction and visualization of duplicate images.
+
+## Technologies
+
+- Python 3.8+
+- PyQt6
+- PyTorch
+- torchvision
+- scikit-learn
+- Pillow
+- matplotlib
+- pytest
 
 ## Installation
 1. Clone the repository:
@@ -107,3 +123,17 @@ To run the tests, use the following command:
 python -m pytest
 ```
 This will execute all the unit tests and ensure that the application functions correctly.
+
+## Contributing
+
+How to help with project development? How to send a proposal or bug report. How to send revision (make a pull request, what steilgades are used). You can put it in a separate file - [Contributing.md](CONTRIBUTING.md).
+
+## Sources
+
+This project was inspired by and references the following repository:
+
+- [idealo/imagededup](https://github.com/idealo/imagededup)
+
+## Project Team
+
+- Kulakov Timofey
